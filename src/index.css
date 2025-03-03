@@ -1,0 +1,23 @@
+:root {
+
+    --bg-main: rgb(255, 255, 255);
+    --bg-secondary: #004aad;
+
+    --text-main: #000000;
+    --text-secondary: #fff;
+
+    --logo-theme: url('./assets/lightLogo.png');
+
+    font-family: "Poppins", sans-serif;
+    color: var(--text-main);
+}
+
+body {
+    background-color: var(--bg-main);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
