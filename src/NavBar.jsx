@@ -3,24 +3,38 @@ import styles from './NavBar.module.css'
 import { Link } from 'react-router-dom';
 import useUserStore from './hooks/useUserStore'
 import ThemeSwitcher from './components/ThemeSwitcher'
+import UserDashboardButton from "./components/UserDashboardButton";
 
 export default function NavBar() {
     const user = useUserStore(state => state.user)
 
+
     return(
+        <>
         <nav className={styles.NavBarContainer}>
             
             <span className={styles.leftNav}>
                 <div className={styles.logoHolder}></div>
-                <h1>Home</h1>
+                
+                <Link to="/" className={styles.HomeLink}>Home</Link>
                 <h1>Donate</h1>
             </span>
             <span className={styles.rightNav}>
-                <ThemeSwitcher />
-                <button className={styles.logInButton}>Log-In</button>
+                {user.isLoggedIn ?
+                    <>
+                    <h1 className={styles.LogOut}>Log-Out</h1>
+                    <UserDashboardButton />
+                    </>
+                : 
+                    <button className={styles.logInButton}>Log-In</button>
+                }
             </span>
         </nav>
+        <div className={styles.themeSwitcherContainer}>
+        <ThemeSwitcher />
+        </div>
+        </>
     )
-    //replace the h1 elms with Link and implement react-router-dom first
+    //create login button component that handles login state and logic
 }
 

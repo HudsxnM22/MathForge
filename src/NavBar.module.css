@@ -19,9 +19,17 @@
     width: 50%;
     align-items: center;
     /*this fixes the alignment issues with the logo*/
-    gap: 11em;
+    gap: 5em;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 16px;
+}
+
+.HomeLink {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .logoHolder {
@@ -45,13 +53,18 @@
     gap: 3em;
 }
 
+.LogOut{
+    color: rgb(230, 105, 105);
+    font-size: 20px;
+}
+
 .logInButton {
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
     border: none;
     border-radius: 45px;
-    padding: 0.8em 2em;
-    font-size: 23px;
+    padding: 0.6em 1.5em;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     transition: all 100ms ease;
@@ -60,4 +73,13 @@
 .logInButton:hover {
     background-color: #003a8d;
     transform: scale(0.98);
+}
+
+.themeSwitcherContainer {
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
 }

@@ -6,7 +6,7 @@ const useTheme = create((set) => ({
         const currentTheme = state.theme
         const root = document.querySelector(':root');
         if(currentTheme === 'light'){ //set theme to dark
-            root.style.setProperty('--bg-main', 'rgb(72, 72, 72)') //background
+            root.style.setProperty('--bg-main', 'rgb(78, 78, 78)') //background
             root.style.setProperty('--text-main', 'rgb(255, 255, 255)') //text
             root.style.setProperty('--logo-theme', `url('./src/assets/darkLogo.png')`) //logo
             return {theme: 'dark'}

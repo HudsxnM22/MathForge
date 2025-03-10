@@ -6,8 +6,6 @@ import useTheme from '../hooks/useTheme';
 
 const ThemeSwitcher = () => {
   const changeTheme = useTheme((state) => state.changeTheme);
-  const currentTheme = useTheme((state) => state.theme);
-  
 
   return (
     <StyledWrapper>
