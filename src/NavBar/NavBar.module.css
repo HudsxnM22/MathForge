@@ -1,0 +1,121 @@
+
+.NavBarContainer {
+    margin: 0px;
+    height: 8em;
+    width: 100%;
+    background-color: var(--bg-main);
+    -webkit-box-shadow: 4px 24px 84px -11px rgba(0,0,0,0.12);
+    -moz-box-shadow: 4px 24px 84px -11px rgba(0,0,0,0.12);
+    box-shadow: 4px 24px 84px -11px rgba(0,0,0,0.12);
+    display: flex;
+    flex: 0;
+    align-items: center;
+    position: sticky;
+    z-index: 100;
+}
+
+.leftNav {
+    display: flex;
+    height: 8em;
+    width: 50%;
+    align-items: center;
+    /*this fixes the alignment issues with the logo*/
+    gap: 5em;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.logoHolder {
+    width:12em;
+    height: 12em;
+    background-image: var(--logo-theme);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    margin-left: 4em;
+    margin-right: -2em;
+}
+
+.rightNav {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 8em;
+    width: 50%;
+    padding-right: 3em;
+    gap: 3em;
+}
+
+.LogOut{
+    color: rgb(230, 105, 105);
+    font-size: 20px;
+}
+
+.logInButton {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 45px;
+    padding: 0.6em 1.5em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 100ms ease;
+}
+
+.logInButton:hover {
+    background-color: #003a8d;
+    transform: scale(0.98);
+}
+
+.themeSwitcherContainer {
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+}
+
+.SideNav {
+    position: fixed;
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    max-width: 12em;
+    gap: 2em;
+}
+
+.SideButton {
+    background-color: var(--bg-secondary);
+    width: 8em;
+    padding: 0.7em 0 0.7em;
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: center;
+    transition: all 100ms ease;
+    animation: slide-in 300ms ease;
+}
+
+.SideButton:nth-child(2) {animation-duration: 500ms;}
+
+.SideButton:hover {
+    background-color: #003a8d;
+    width: 9em;
+}
+
+@keyframes slide-in {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
