@@ -1,14 +1,12 @@
 
 .NavBarContainer {
     margin: 0px;
-    height: 8em;
     width: 100%;
     background-color: var(--bg-main);
     -webkit-box-shadow: 4px 24px 84px -11px rgba(0,0,0,0.12);
     -moz-box-shadow: 4px 24px 84px -11px rgba(0,0,0,0.12);
     box-shadow: 4px 24px 84px -11px rgba(0,0,0,0.12);
     display: flex;
-    flex: 0;
     align-items: center;
     position: sticky;
     z-index: 100;
@@ -16,7 +14,8 @@
 
 .leftNav {
     display: flex;
-    height: 8em;
+    min-height: fit-content;
+    height: 10.5vh;
     width: 50%;
     align-items: center;
     /*this fixes the alignment issues with the logo*/
@@ -26,7 +25,7 @@
 }
 
 .logoHolder {
-    width:12em;
+    width: 12em;
     height: 12em;
     background-image: var(--logo-theme);
     background-repeat: no-repeat;
@@ -34,13 +33,15 @@
     background-position: right;
     margin-left: 4em;
     margin-right: -2em;
+    margin-top: -3em;
+    margin-bottom: -3em;
 }
 
 .rightNav {
     display: flex;
     justify-content: right;
     align-items: center;
-    height: 8em;
+    height: 10.5vh;
     width: 50%;
     padding-right: 3em;
     gap: 3em;
@@ -79,17 +80,17 @@
 
 .SideNav {
     position: fixed;
-    margin-top: 5em;
+    margin-top: 3%;
     display: flex;
     flex-direction: column;
-    max-width: 12em;
+    width: 7.3%;
     gap: 2em;
 }
 
 .SideButton {
     background-color: var(--bg-secondary);
-    width: 8em;
-    padding: 0.7em 0 0.7em;
+    width: 100%;
+    padding: 0.7vh 1vw 0.7vh;
     border-top-right-radius: 3em;
     border-bottom-right-radius: 3em;
     border: 0;
@@ -97,17 +98,23 @@
     text-decoration: none;
     color: var(--text-secondary);
     font-weight: bold;
-    font-size: 1.3em;
     text-align: center;
     transition: all 100ms ease;
     animation: slide-in 300ms ease;
+    box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+}
+
+.sidebuttontext {
+    font-size: clamp(1px, 1vw, 20px);
 }
 
 .SideButton:nth-child(2) {animation-duration: 500ms;}
 
 .SideButton:hover {
     background-color: #003a8d;
-    width: 9em;
+    width: 110%;
 }
 
 @keyframes slide-in {

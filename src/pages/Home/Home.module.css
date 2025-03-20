@@ -1,0 +1,118 @@
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+    margin: 0 auto;
+    gap: 10vh;
+    align-items: center;
+    height: fit-content;
+    z-index: 0;
+}
+
+.HomeContent {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+    flex: 0 1 auto;
+}
+
+.homeBannerImageHolder {
+    width: 100%;
+    max-width: 55%;
+    background-image: url('../../assets/homeBannerImage.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 16 / 11.5;
+    box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    border-radius: 15px;
+}
+
+.textHolder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.9em;
+    text-align: center;
+    width: 45%;
+    padding: 2em 2em;
+    font-style: italic;
+}
+
+.welcomeText{
+    font-weight: 540;
+    font-size: clamp(1.5rem, 3vw, 10.5rem);
+}
+
+.createButton {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 50px;
+    padding: 1.4em 1.5em;
+    font-size: clamp(0.5rem, 0.85vw, 1.5rem);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 100ms ease;
+}
+
+.createButton:hover {
+    background-color: #003a8d;
+    transform: scale(0.98);
+}
+
+
+.HowContent {
+    display: flex;
+    width: 100%;
+    flex: 0 1 auto;
+    margin-bottom: 5%;
+    align-items: center;
+}
+
+
+.notebookHowToImage {
+    width: 100%;
+    max-width: 50%;
+    height: 100%;
+    background-image: url('https://placehold.co/600x400');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 16 / 9;
+    box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 2px 12px 29px 0px rgba(0,0,0,0.34);
+    border-radius: 15px;
+}
+
+.howtoTextHolder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.9em;
+    text-align: center;
+    width: 50%;
+    padding: 5em 5em;
+}
+
+.howToText {
+    font-weight: 540;
+    font-size: clamp(0.5rem, 1.6vw, 2.5rem);
+}
+
+.description {
+    font-size: clamp(0.3rem, 1.1vw, 1.5rem);
+}
+
+.disclaimer {
+    margin-top: -2.7em;
+    font-size: clamp(0.2rem, 0.4vw, 0.8rem);
+    text-align: left;
+    padding: 3em;
+}

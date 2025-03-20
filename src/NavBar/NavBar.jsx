@@ -39,8 +39,8 @@ export default function NavBar() {
         <nav className={styles.SideNav}>
             {user.isLoggedIn ?
                 <>
-                    <Link to="/" className={styles.SideButton}>Home</Link>
-                    <Link to="/notebooks" className={styles.SideButton}>Notebooks</Link>
+                    <Link to="/" className={styles.SideButton}><h4 className={styles.sidebuttontext}>Home</h4></Link>
+                    <Link to="/notebooks" className={styles.SideButton}><h4 className={styles.sidebuttontext}>Notebooks</h4></Link>
                 </>
                 : 
                 <></>

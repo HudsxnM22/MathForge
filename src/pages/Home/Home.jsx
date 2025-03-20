@@ -6,34 +6,22 @@ const Home = () => {
     const toggleUserLogIn = useUserStore(state => state.toggleLogIn);
     
       return (
-        <div style={styles.body}>
-          <header style={styles.header}>
-            <h1>Welcome to My Homepage</h1>
-          </header>
-    
-          <section style={styles.section}>
-            <h2>About Me</h2>
-            <p style={styles.content}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis nisl eu leo interdum, nec fermentum libero fermentum. Integer euismod orci at mi malesuada, eu iaculis enim auctor. Etiam id nulla at lorem venenatis tincidunt.
-            </p>
-    
-            <h2>My Hobbies</h2>
-            <p style={styles.content}>
-              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur tristique feugiat dolor, id ullamcorper felis laoreet eget. Aenean aliquam, libero a aliquam pharetra, neque mi egestas urna, id condimentum ante leo ac purus.
-            </p>
-    
-            <h2>Contact</h2>
-            <p style={styles.content}>
-              Fusce nec dui ut elit fermentum interdum. Integer nec nulla sit amet purus mollis feugiat. Donec varius bibendum arcu, sit amet dignissim elit maximus sit amet. In sed orci non erat varius fringilla ac sit amet turpis.
-            </p>
-            <button onClick={toggleUserLogIn}>Toggle Login</button>
-    
-            <div style={styles.spacer}></div>
-          </section>
-    
-          <footer style={styles.footer}>
-            <p>© 2025 My Homepage. All Rights Reserved.</p>
-          </footer>
+        <div className={styles.mainContent}>
+          <span className={styles.HomeContent}>
+            <div className={styles.homeBannerImageHolder}></div>
+            <div className={styles.textHolder}>
+              <h1 className={styles.welcomeText}>Create Math Practice Problems Effortlessly</h1>
+              <button className={styles.createButton} onClick={toggleUserLogIn}>Start Creating</button>
+            </div>
+          </span>
+          <span className={styles.HowContent}>
+            <div className={styles.howtoTextHolder}>
+              <h2 className={styles.howToText}>How it works</h2>
+              <p className={styles.description}>Mathforge uses the latest AI models to generate endless unique math practice problems. Math practice sets are stored in "Notebooks" these notebooks hold 5 practice problems each. To create a notebook first log-in or create an account, this will then give you access to the "Notebook creator". From there its simple, all you do is select from the drop down the math topic and subtopic and then your done. Each notebook will show you both the problem then upon request will display the answer powered by Wolfram Alpha.</p>
+              <p className={styles.disclaimer}>Disclaimer regarding notebooks usage monthly: Currently Mathforge is limited by strict usage policies by the AI models we use, if you would like to donate to support Mathforge's development effort, your donation will be greatly appreciated.</p>
+            </div>
+            <div className={styles.notebookHowToImage}></div>
+          </span>
         </div>
       );
 };
