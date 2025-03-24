@@ -13,13 +13,28 @@
     width: 85%;
     height: 100vh;
     margin: 0;
-    background-color: rgb(209, 241, 241);
 }
 
 .notebookHolderContainer {
     width: 60%;
     height: 70vh;
-    background-color: aquamarine;
     margin-left: 3%;
 }
+
+.notebookHolder {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+}
+
+.notebookTitle {
+    margin-top: 1%;
+    padding-left: 5%;
+    font-size: clamp(0.5rem, 1.5vw, 5rem);
+    border-bottom: clamp(0.1rem, 0.1vw, 0.2rem) solid var(--text-main);
+}
+
+
 
