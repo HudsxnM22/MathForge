@@ -1,0 +1,25 @@
+
+.notebookDashboardContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+}
+
+.notebooksDashboard {
+    display: flex;
+    align-items: center;
+    width: 85%;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(209, 241, 241);
+}
+
+.notebookHolderContainer {
+    width: 60%;
+    height: 70vh;
+    background-color: aquamarine;
+    margin-left: 3%;
+}
+
