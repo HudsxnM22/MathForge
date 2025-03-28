@@ -36,5 +36,17 @@
     border-bottom: clamp(0.1rem, 0.1vw, 0.2rem) solid var(--text-main);
 }
 
+.notebooksList {
+    margin-top: 2vh;
+    padding-top: 3.3%;
+    padding-bottom: 2%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2.3vh;
+    height: 100%;
+    overflow-y: scroll;
+
+}
 
 
