@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './NotebooksDashboard.module.css';
 import useUserStore from '../../hooks/useUserStore';
+import { useEffect } from 'react'; //for fetching notebooks from the backend
+import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import SearchBar from './components/searchBar'; //notebooks search bar
 import NotebookCard from './components/NotebookCard'; //notebook card
@@ -12,10 +14,32 @@ import NotebookCreator from './components/NotebookCreator';
 const NotebooksDashboard = () => {
     const toggleUserLogIn = useUserStore(state => state.toggleLogIn);
     const user = useUserStore(state => state.user);
-    //will pull from local storage to fetch all notebooks and store them in an array state CURRENTLY IN TEST MODEL
+    const [notebooks, SetNotebooks] = useState([]) //mock notebook
+    //will pull from local storage and API to fetch all notebooks and store them in an array state CURRENTLY IN TEST MODEL
 
+    const notebooksPopulation = notebooks.map((notebook) => {
+        return (
+            <NotebookCard key={notebook.id} NotebookData={notebook} />
+        )
+    })
 
+    const testNotebook = () => {
+        SetNotebooks([
+            { id: 1, name: "Algebra Basics", subtopic: "Linear Equations" },
+            { id: 2, name: "Calculus 101", subtopic: "Derivatives" },
+            { id: 3, name: "Geometry Fundamentals", subtopic: "Triangles" },
+            { id: 4, name: "Statistics Overview", subtopic: "Probability" },
+            { id: 5, name: "Advanced Topics", subtopic: "Integrals" },
+            { id: 6, name: "Algebra Basics", subtopic: "Linear Equations" },
+            { id: 7, name: "Calculus 101", subtopic: "Derivatives" },
+            { id: 8, name: "Geometry Fundamentals", subtopic: "Triangles" },
+            { id: 9, name: "Statistics Overview", subtopic: "Probability" },
+            { id: 10, name: "Advanced Topics", subtopic: "Integrals" },
 
+        ])
+    }
+
+    //if user isnt logged in nothing is displayed and theyre redirected to home
     return (
         <div className={styles.notebookDashboardContainer}>
             {user.isLoggedIn ?
@@ -23,14 +47,13 @@ const NotebooksDashboard = () => {
                     <div className={styles.notebookHolderContainer}>
                         <div className={styles.notebookHolder}>
                             <h1 className={styles.notebookTitle}>Your Notebooks</h1>
-                            <SearchBar />
+                            <SearchBar displayedNotebooks={notebooks} filterDisplayedNotebooks={SetNotebooks}/>
                             <section className={styles.notebooksList}>
-                                {/* Currently just a mock notebook */}
-                                <NotebookCard NotebookData={{
-                                    name: "Pre-calc Notebook",
-                                    topic: "pre-calc",
-                                    subtopic: "trig identities"
-                                }}/>
+                                {notebooks.length > 0 ? 
+                                    notebooksPopulation
+                                :
+                                    <h1 className={styles.emptyNotebookMessage}>No Notebooks found</h1>
+                                }
                             </section>
                         </div>
                     </div>
@@ -44,3 +67,4 @@ const NotebooksDashboard = () => {
 };
 //implement on logout redirect to home
 export default NotebooksDashboard;
+

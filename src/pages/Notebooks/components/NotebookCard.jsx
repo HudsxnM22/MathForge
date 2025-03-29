@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './NotebookCard.module.css'
 import styled from 'styled-components';
 
 //this is the clickable card css is borrowed from a css designer far greater than myself
@@ -30,8 +29,8 @@ const StyledWrapper = styled.div`
   .book {
     position: relative;
     border-radius: 10px;
-    width: 14vw;
-    height: 23vh;
+    width: 10vw;
+    height: 10vw;
     background-color: whitesmoke;
     -webkit-box-shadow: 1px 1px 12px #000;
     box-shadow: 1px 1px 12px #000;
@@ -57,9 +56,9 @@ const StyledWrapper = styled.div`
     top: 0;
     position: absolute;
     background: #CE5937;
-    background: -moz-linear-gradient(-45deg, #CE5937 0%, var(--bg-secondary) 0%, #F8F8F8 100%);
-    background: -webkit-linear-gradient(-45deg, #CE5937 0%, var(--bg-secondary) 0%, #F8F8F8 100%);
-    background: linear-gradient(135deg, #CE5937 0%, var(--bg-secondary) 0%, #F8F8F8 100%);  
+    background: -moz-linear-gradient(-45deg, #CE5937 0%, #888888 0%, #F8F8F8 100%);
+    background: -webkit-linear-gradient(-45deg, #CE5937 0%, #888888 0%, #F8F8F8 100%);
+    background: linear-gradient(135deg, #CE5937 0%, #888888 0%, #F8F8F8 100%);  
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -113,6 +112,7 @@ const StyledWrapper = styled.div`
     }
 
   p {
+    text-align: center;
     font-size: clamp(5px, 0.8vw ,25px);
     font-weight: 550;
   }`;
