@@ -14,16 +14,17 @@ import NotebookCreator from './components/NotebookCreator';
 const NotebooksDashboard = () => {
     const toggleUserLogIn = useUserStore(state => state.toggleLogIn);
     const user = useUserStore(state => state.user);
-    const [notebooks, SetNotebooks] = useState([]) //mock notebook
+    const [notebooks, SetNotebooks] = useState([])
+    const [displayedNotebooks, SetDisplayedNotebooks] = useState([])
     //will pull from local storage and API to fetch all notebooks and store them in an array state CURRENTLY IN TEST MODEL
 
-    const notebooksPopulation = notebooks.map((notebook) => {
+    const notebooksPopulation = displayedNotebooks.map((notebook) => {
         return (
             <NotebookCard key={notebook.id} NotebookData={notebook} />
         )
     })
 
-    const testNotebook = () => {
+    const testNotebook = () => { //this is mock data efore backend integration
         SetNotebooks([
             { id: 1, name: "Algebra Basics", subtopic: "Linear Equations" },
             { id: 2, name: "Calculus 101", subtopic: "Derivatives" },
@@ -35,9 +36,20 @@ const NotebooksDashboard = () => {
             { id: 8, name: "Geometry Fundamentals", subtopic: "Triangles" },
             { id: 9, name: "Statistics Overview", subtopic: "Probability" },
             { id: 10, name: "Advanced Topics", subtopic: "Integrals" },
-
         ])
     }
+
+    //map over the notebooks and make a second state displayedNotebooks those will be displayed and be whats returned with the search component
+    useEffect(() => {
+        SetDisplayedNotebooks(
+            notebooks.map((notebook) => {
+                return (
+                    {...notebook}
+                )
+            })
+        )
+    }, [notebooks])
+
 
     //if user isnt logged in nothing is displayed and theyre redirected to home
     return (
@@ -47,7 +59,7 @@ const NotebooksDashboard = () => {
                     <div className={styles.notebookHolderContainer}>
                         <div className={styles.notebookHolder}>
                             <h1 className={styles.notebookTitle}>Your Notebooks</h1>
-                            <SearchBar displayedNotebooks={notebooks} filterDisplayedNotebooks={SetNotebooks}/>
+                            <SearchBar nonFilteredNotebooks={notebooks} filterDisplayedNotebooks={SetDisplayedNotebooks}/>
                             <section className={styles.notebooksList}>
                                 {notebooks.length > 0 ? 
                                     notebooksPopulation
@@ -58,6 +70,7 @@ const NotebooksDashboard = () => {
                         </div>
                     </div>
                     <NotebookCreator />
+                    <button onClick={testNotebook}>Test</button>
                 </section>
             :
                 <Navigate to="/" />

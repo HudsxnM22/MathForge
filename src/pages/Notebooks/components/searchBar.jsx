@@ -1,9 +1,23 @@
 import React from 'react'
 import styles from './searchBar.module.css'
+import { useRef } from 'react'
 //this is mostly for the good styling
 
-const SearchBar = ({displayedNotebooks, filterDisplayedNotebooks}) => {
+const SearchBar = ({nonFilteredNotebooks, filterDisplayedNotebooks}) => {
     //change props, kinda just a template for whats to come
+
+    const searchNotebooks = (e) => {
+        const searchQuery = e.target.value;
+        const filteredNotebooks = nonFilteredNotebooks.filter((notebook) => {
+            return notebook.name.toLowerCase().includes(searchQuery.toLowerCase());
+        })
+        if(searchQuery){
+            filterDisplayedNotebooks(filteredNotebooks)
+        }else{
+            filterDisplayedNotebooks(nonFilteredNotebooks)
+        }
+        
+    }
     
     return (
         <div className={styles.box}>
@@ -15,6 +29,7 @@ const SearchBar = ({displayedNotebooks, filterDisplayedNotebooks}) => {
                 type="text"
                 className={styles.input}
                 placeholder="Search Notebooks..."
+                onChange={searchNotebooks}
             />
         </div>
       );
