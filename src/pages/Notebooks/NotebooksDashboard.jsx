@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import SearchBar from './components/searchBar'; //notebooks search bar
 import NotebookCard from './components/NotebookCard'; //notebook card
 import NotebookCreator from './components/NotebookCreator';
+import getNotebookTests from '../../api/notebooks.api.js';
 
 //for context for what a notebook is. its a collection of 5 math problems and its fetched from the backend and stored in the database
 //the user can create a notebook and add problems to it. the user can also delete a notebook and delete problems from it
@@ -72,6 +73,7 @@ const NotebooksDashboard = () => {
                     <NotebookCreator />
                     <button onClick={testNotebook}>Test</button>
                 </section>
+                
             :
                 <Navigate to="/" />
             }

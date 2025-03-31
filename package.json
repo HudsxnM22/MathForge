@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/mathjax": "^0.0.40",
     "axios": "^1.8.4",
+    "better-react-mathjax": "^2.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

@@ -4,9 +4,9 @@ import axios from "axios";
 //this is a test fucntions using a test endpoint wiht mock data for UI purposes
 const getNotebookTests = () => {
     try{
-        axios.get("http://localhost:8080/testNotebook")
+        return axios.get("http://localhost:8080/testNotebook")
         .then((response) => {
-            return response
+            return response.data
         })
     }
     catch(error){
