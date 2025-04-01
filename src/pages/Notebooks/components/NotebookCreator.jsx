@@ -76,6 +76,20 @@ const NotebookCreator = () => {
         }
     }
 
+    const colorMap = {
+        0: "rgb(49, 180, 114)", 
+        1: "rgb(92, 189, 92)",
+        2: "rgb(197, 174, 70)",
+        3: "rgb(197, 85, 70)"
+    }
+
+    const difficultyMap = {
+        0: "Basic",
+        1: "Medium",
+        2: "Hard",
+        3: "Very Hard"
+    }
+
 
     //to do: integrate with back end POST create request
 
@@ -100,6 +114,12 @@ const NotebookCreator = () => {
                     <select {...register("subTopic")} className={styles.notebookDropdown} style={{ color: subTopics[0].id === 0 ? "#757576": "var(--text-main)"}}>
                         {subTopicOptions}
                     </select>
+                </fieldset>
+                <fieldset className={styles.fieldSet}>
+                    <label className={styles.label}>Difficulty</label>
+                    <input {...register("difficulty")} className={styles.notebookRange} type="range" min={0} max={3} defaultValue={1}>
+                    </input>
+                    <p className={styles.difficultyText} style={{ color: colorMap[watch("difficulty")]}}>{difficultyMap[watch("difficulty")]}</p>
                 </fieldset>
                 <button type="submit" className={styles.createButton} style={{ backgroundColor: errors.notebookName ? "rgb(246, 106, 106)" : "var(--bg-secondary)"}}>
                     {errors.notebookName ? errors.notebookName.message : "Create Notebook"}
