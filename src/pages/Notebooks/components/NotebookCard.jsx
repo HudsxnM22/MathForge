@@ -72,9 +72,6 @@ const NotebookCard = ({NotebookData}) => {
         height: 50%;
         border-top-left-radius: clamp(5px, 1.5vw,20px);
         border-top-right-radius: clamp(5px, 1.5vw,20px);
-        box-shadow: 0px 1px 27px 2px rgba(0,0,0,0.47) inset;
-        -webkit-box-shadow: 0px 1px 27px 2px rgba(0,0,0,0.47) inset;
-        -moz-box-shadow: 0px 1px 27px 2px rgba(0,0,0,0.47) inset;
         display: flex;
         align-items: top;
         justify-content: right;
