@@ -25,20 +25,24 @@ const NotebooksDashboard = () => {
         )
     })
 
-    const testNotebook = () => { //this is mock data efore backend integration
+    const testNotebook = () => { //this is mock data before backend integration
         SetNotebooks([
-            { id: 1, name: "Algebra Basics", subtopic: "Linear Equations" },
-            { id: 2, name: "Calculus 101", subtopic: "Derivatives" },
-            { id: 3, name: "Geometry Fundamentals", subtopic: "Triangles" },
-            { id: 4, name: "Statistics Overview", subtopic: "Probability" },
-            { id: 5, name: "Advanced Topics", subtopic: "Integrals" },
-            { id: 6, name: "Algebra Basics", subtopic: "Linear Equations" },
-            { id: 7, name: "Calculus 101", subtopic: "Derivatives" },
-            { id: 8, name: "Geometry Fundamentals", subtopic: "Triangles" },
-            { id: 9, name: "Statistics Overview", subtopic: "Probability" },
-            { id: 10, name: "Advanced Topics", subtopic: "Integrals" },
+            { id: 1, name: "Algebra Basics", subtopic: "Linear Equations", difficulty: 2, q1: 'Evaluate the integral: \\[ \\int x^2 \\,dx \\]'},
+            { id: 2, name: "Calculus 101", subtopic: "Derivatives" , difficulty: 0, q1: "Compute the following integral: \\[ \\int (3x + 5) \\,dx \\]"},
+            { id: 3, name: "Geometry Fundamentals", subtopic: "Triangles" , difficulty: 3, q1: "Find the indefinite integral: \\[ \\int e^x \\,dx \\]"},
+            { id: 4, name: "Statistics Overview", subtopic: "Probability" , difficulty: 3, q1: "Determine the integral of the function: \\[ \\int \\frac{1}{x} \\,dx \\]"},
+            { id: 5, name: "Advanced Topics", subtopic: "Integrals" , difficulty: 2, q1: "Evaluate the following integral: \\[ \\int \\cos x \\,dx \\]"},
+            { id: 6, name: "Algebra Basics", subtopic: "Linear Equations" , difficulty: 2, q1: "Solve for \\( x \\) in the quadratic equation: \\[ 4x^2 - 9x + 2 = 0 \\]"},
+            { id: 7, name: "Calculus 101", subtopic: "Derivatives" , difficulty: 1, q1: "Find the values of \\( x \\) that satisfy the equation: \\[ 3x^2 + \\sqrt{2}x - 5 = 0 \\]"},
+            { id: 8, name: "Geometry Fundamentals", subtopic: "Triangles" , difficulty: 1, q1: "Determine the roots of the quadratic equation using the quadratic formula: \\[ 5x^2 - 7x + 1 = 0 \\]"},
+            { id: 9, name: "Statistics Overview", subtopic: "Probability" , difficulty: 1, q1: "If the quadratic equation \\( ax^2 + bx + c = 0 \\) has roots \\( \\alpha \\) and \\( \\beta \\), express \\( \\alpha^2 + \\beta^2 \\) in terms of \\( a, b, \\) and \\( c \\)."},
+            { id: 10, name: "Advanced Topics", subtopic: "Integrals" , difficulty: 3, q1: "Find the range of values for \\( k \\) such that the equation \\[ x^2 - (k+2)x + k = 0 \\] has real and distinct roots."},
         ])
     }
+
+    useEffect(() => {
+        window.MathJax.typeset()
+    })
 
     //map over the notebooks and make a second state displayedNotebooks those will be displayed and be whats returned with the search component
     useEffect(() => {
