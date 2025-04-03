@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
+import { useState } from 'react'
+import NotebookPage from './notebookOpenUI/NotebookPage';
+import { Navigate } from 'react-router-dom';
 
 //this is the clickable card css is borrowed from a css designer far greater than myself
 //to do: edit feature, with POST request to change notebook name along with DELETE feature within each notebook loading feature for each card
@@ -7,11 +10,12 @@ import styled from 'styled-components';
 //this is the card that will be displayed for each notebook
 //the user can click on the card to view the notebook
 //**this is from https://uiverse.io/JohnnyCSilva/jolly-elephant-67
-const NotebookCard = ({NotebookData}) => {
-    const NotebookName = NotebookData.name
-    const NotebookSubtopic = NotebookData.subtopic
+const NotebookCard = ({NotebookData, setNotebookPage}) => {
+
+    const NotebookName = NotebookData.notebookName
+    const NotebookSubtopic = NotebookData.subTopic
     const NotebookDifficulty = NotebookData.difficulty
-    const NotebookSample = NotebookData.q1
+    const NotebookSample = '\\(' + NotebookData.notebookSet.q1Latex + '\\)'
 
     const difficultyMap = {
         0: "Basic",
@@ -25,19 +29,20 @@ const NotebookCard = ({NotebookData}) => {
       1: "rgb(132, 219, 132)", // Lighter muted green
       2: "rgb(237, 214, 110)", // Lighter yellow
       3: "rgb(237, 135, 110)"  // Lighter red
-    };
+    }
 
     const textColorMap = {
       0: "rgb(34, 125, 79)",  // Darker green
       1: "rgb(60, 140, 60)",  // Darker muted green
       2: "rgb(140, 124, 50)", // Darker yellow
       3: "rgb(140, 60, 50)"   // Darker red
-    };
+    }
+
 
       return (
         <StyledWrapper>
-          <div className="card">
-            <div className="img" style={{background: `linear-gradient(180deg, ${colorMap[NotebookDifficulty]} 0%, white 100%, rgba(0,212,255,1) 100%)`}}>
+          <div className="card" onClick={() => setNotebookPage(NotebookData)}>
+            <div className="img" style={{background: `linear-gradient(180deg, ${colorMap[NotebookDifficulty]} 0%, white 100%`}}>
               <h4 className="math">{NotebookSample}</h4>
               <div className="save">✏️</div>
             </div>
@@ -82,7 +87,7 @@ const NotebookCard = ({NotebookData}) => {
       .math {
         font-family: 'Lucida Sans' sans-serif;
         font-size: clamp(5px, 0.65vw,18px);
-        margin-top: 4%;
+        margin-top: 20%;
         font-weight: 470;
         text-align: center;
         position: absolute;

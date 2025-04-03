@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './searchBar.module.css'
-import { useRef } from 'react'
 //this is mostly for the good styling
 
 const SearchBar = ({nonFilteredNotebooks, filterDisplayedNotebooks}) => {
@@ -9,7 +8,7 @@ const SearchBar = ({nonFilteredNotebooks, filterDisplayedNotebooks}) => {
     const searchNotebooks = (e) => {
         const searchQuery = e.target.value;
         const filteredNotebooks = nonFilteredNotebooks.filter((notebook) => {
-            return notebook.name.toLowerCase().includes(searchQuery.toLowerCase());
+            return notebook.notebookName.toLowerCase().includes(searchQuery.toLowerCase());
         })
         if(searchQuery){
             filterDisplayedNotebooks(filteredNotebooks)
