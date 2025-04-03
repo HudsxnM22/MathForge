@@ -44,15 +44,33 @@ const NotebooksDashboard = () => {
     };
 
     useEffect(() => {
-        window.MathJax.typeset()
-    })
+        try {
+            window.MathJax.typeset();
+        }catch (e) {
+            console.error('MathJax error:', e);
+        }
+    }, [displayedNotebooks])
 
-
+    //prevents scrolling while the User has the flashcard page up mostly a cosmetic design choice
+    useEffect(() => {
+        if (notebookPage) {
+            document.body.style.overflow = 'hidden';
+            document.body.style.height = '100vh';
+        } else {
+            document.body.style.overflow = 'auto';
+            document.body.style.height = 'auto';
+        }
+        
+        return () => {
+            document.body.style.overflow = 'auto';
+            document.body.style.height = 'auto';
+        };
+    }, [notebookPage]);
 
 
     //if user isnt logged in nothing is displayed and theyre redirected to home
     return (
-        <div className={styles.notebookDashboardContainer} >
+        <div className={styles.notebookDashboardContainer}>
             
             {user.isLoggedIn ?
                 <section className={styles.notebooksDashboard} style={{overflow: notebookPage ? 'hidden' : 'auto'}}>
