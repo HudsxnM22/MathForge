@@ -13,3 +13,34 @@
 
     background: rgba(64, 64, 64, 0.8);
 }
+
+.exitButton {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    width: 3vw;
+    height: 3vw;
+
+    cursor: pointer;
+    transition: all 400ms ease;
+}
+
+.exitButton circle {
+    fill: rgb(246, 106, 106, 1.0);
+}
+
+.exitButton:hover {
+    transform: scale(0.97);
+
+}
+
+.button {
+    cursor: pointer;
+    width: clamp(5px, 3.7vw,150px);
+    height: clamp(5px, 3.7vw,150px);
+}
+
+.button path {
+    fill: rgb(35, 75, 255);
+    
+}
