@@ -16,8 +16,9 @@ const NotebookCreator = () => {
     } = useForm({
         defaultValues: {
             notebookName: "",
-            topic: 0, // Default to "Select Topic"
-            subTopic: 0 // Default to "Select Topic"
+            topic: 0,
+            subTopic: 0,
+            difficulty: 1
         },
         mode: "onBlur" // Validate on blur
     })
