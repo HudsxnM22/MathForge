@@ -3,22 +3,29 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
 import authAPI from '../../api/auth.api';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
-const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const [loginError, setLoginError] = useState(false)
+const Register = () => {
+    const { register, handleSubmit, formState: { errors }, watch } = useForm()
+    const [registerError, setRegisterError] = useState(false)
+
 
     const navigate = useNavigate()
     
     const onSubmit = data => {
-        authAPI.loginAPI(data).then((response) => {
-            if(response.status === 200){
-                setLoginError(false)
+
+        const refinedData = { //just removes the confirm password for backend flow
+            email: data.email,
+            password: data.password,
+        }
+
+        authAPI.registerAPI(refinedData).then((response) => {
+            if(response.status === 201){
+                setRegisterError(false)
                 console.log("Login successful")
                 navigate("/notebooks")
             }else{
-                setLoginError(true)
+                setRegisterError(true)
             }
         })
     }
@@ -26,7 +33,7 @@ const Login = () => {
     return (
         <div className={styles.loginContainer}>
             <section className={styles.loginSection}>
-                <h1 className={styles.loginTitle}>Login</h1>
+                <h1 className={styles.loginTitle}>Register</h1>
                 <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label htmlFor="email">Email:</label>
@@ -49,11 +56,22 @@ const Login = () => {
                             }
                         })}/>
                         {errors.password && <p className={styles.errorText}>{errors.password.message}</p>}
-                        <p className={styles.forgotPasswordText}><Link to="/forgot-password" className={styles.linkToRegister}>Forgot Password?</Link></p>
                     </div>
-                    {loginError && <p className={styles.errorText}>Email or Password is incorrect</p>}
-                    <button type='submit' className={styles.loginButton}>Login</button>
-                    <p className={styles.registerText}>Don't have an account? <Link to="/register" className={styles.linkToRegister}>Register</Link></p>
+                    <div>
+                        <label htmlFor="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" className={styles.input} placeholder='Confirm Password' {...register('confirmPassword', {
+                            required: true,
+                            validate: (value) => {
+                                if (value !== watch('password')) {
+                                    return 'Passwords do not match';
+                                }
+                            }
+                        })}/>
+                        {errors.confirmPassword && <p className={styles.errorText}>{errors.confirmPassword.message}</p>}
+                    </div>
+                    {registerError && <p className={styles.errorText}>Email already in use</p>}
+                    <button type='submit' className={styles.loginButton}>Register</button>
+                    <p className={styles.registerText}>have an account? <Link to="/login" className={styles.linkToRegister}>Log-In</Link></p>
                 </form>
             </section>
             <section className={styles.bannerHolder}>
@@ -63,4 +81,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

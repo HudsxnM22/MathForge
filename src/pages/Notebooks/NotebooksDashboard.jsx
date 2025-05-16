@@ -9,6 +9,7 @@ import NotebookCard from './components/NotebookCard'; //notebook card
 import NotebookCreator from './components/NotebookCreator';
 import getNotebookTests from '../../api/notebooks.api.js';
 import NotebookPage from './components/notebookOpenUI/NotebookPage.jsx'
+import notebooksApi from '../../api/notebooks.api.js';
 
 
 //for context for what a notebook is. its a collection of 5 math problems and its fetched from the backend and stored in the database
@@ -33,7 +34,7 @@ const NotebooksDashboard = () => {
     
     const testNotebook = async () => {
         try {
-            const data = await getNotebookTests()
+            const data = await notebooksApi.getAllNotebooksAPI()
             setNotebooks([data])
             setDisplayedNotebooks([data])
             console.log(data)

@@ -2,13 +2,14 @@ import axios from "axios"
 import useUserStore from "../hooks/useUserStore"
 import useUserNotebookAvailStore from "../hooks/userNotebookAvailStore"
 
-const API_URL = "http://localhost:8080/"
+const API_URL = "/api/" //TODO change to https when deployed
+axios.defaults.withCredentials = true
 
 //returns object with data and status for auth handling, also handles global state updates
 const loginAPI = async ({email, password}) => {
     const setLogInState = useUserStore.getState().setLogIn
 
-    logInRequest = {
+    const logInRequest = {
         email: email,
         password: password
     }
@@ -24,7 +25,9 @@ const loginAPI = async ({email, password}) => {
             })
         }
     }catch(error){
-        console.error('Login API error' + error);
+        return {
+            status: 403
+        }
     }
 
     return {
@@ -37,7 +40,7 @@ const loginAPI = async ({email, password}) => {
 const registerAPI = async ({email, password}) => {
     const setLogInState = useUserStore.getState().setLogIn
 
-    registerRequest = {
+    const registerRequest = {
         email: email,
         password: password
     }
@@ -52,7 +55,9 @@ const registerAPI = async ({email, password}) => {
             })
         }
     }catch(error){
-        console.error('Register API error' + error);
+        return {
+            status: 409
+        }
     }
 
     return {
@@ -78,7 +83,6 @@ const refreshAPI = async () => {
     }
 }
 
-//TODO clears http only jwt cookie, test this
 const logoutAPI = async () => {
     const setLogOutState = useUserStore.getState().setLogOut
 
@@ -104,16 +108,18 @@ const logoutAPI = async () => {
 
 const resetPasswordAPI = async ({ email }) => {
 
-    resetRequest = {
+    const resetRequest = {
         email: email,
     }
 
     let response;
     try{
-        response = await axios.post(API_URL + "register", resetRequest)
+        response = await axios.post(API_URL + "reset-password", resetRequest)
 
     }catch(error){
-        console.error('Register API error' + error);
+        return {
+            status: 202//returns 202 good no matter what. so you cant tell if email is already in the db
+        }
     }
 
     return {
@@ -125,16 +131,18 @@ const resetPasswordAPI = async ({ email }) => {
 //returns a short lived JWT access token
 const validateResetPasswordAPI = async ({ email, code }) => {
 
-    validateRequest = {
+    const validateRequest = {
         email: email,
         code: code
     }
 
     let response;
     try{
-        response = await axios.post(API_URL + "register", validateRequest)
+        response = await axios.post(API_URL + "reset-password/validate", validateRequest)
     }catch(error){
-        console.error('Register API error' + error);
+        return {
+            status: 400
+        }
     }
 
     return {
@@ -145,13 +153,13 @@ const validateResetPasswordAPI = async ({ email, code }) => {
 //if 202 then reroutes to login
 const confirmResetPasswordAPI = async ({ password }) => {
     
-    confirmRequest = {
+    const confirmRequest = {
         password: password
     }
 
     let response;
     try{
-        response = await axios.post(API_URL + "register", confirmRequest)
+        response = await axios.post(API_URL + "reset-password/confirm", confirmRequest)
     }catch(error){
         console.error('Register API error' + error);
     }

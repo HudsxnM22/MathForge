@@ -33,6 +33,7 @@
     background-position: right;
     margin-left: 3vw;
     margin-right: -2vw;
+    cursor: pointer;
 }
 
 .rightNav {
@@ -48,6 +49,7 @@
 .LogOut{
     color: rgb(230, 105, 105);
     font-size: clamp(5px, 1.0vw ,30px);
+    cursor: pointer;
 }
 
 .logInButton {
