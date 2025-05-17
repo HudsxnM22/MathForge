@@ -39,10 +39,11 @@
     flex-direction: column;
     width: 100%;
     height: fit-content;
-    margin-bottom: 2vh;
+    
 }
 
 .loginForm div label {
+    margin-top: 2vh;
     font-size: clamp(5px, 1.0vw ,30px);
     font-weight: 420;
     color: var(--text-main);
@@ -94,6 +95,9 @@
 }
 
 .loginButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
     width: 80%;
@@ -104,6 +108,10 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 100ms ease;
+}
+
+.loginButton:first-child{
+    align-items: center;
 }
 
 .loginButton:hover {
@@ -148,4 +156,8 @@
     font-size: clamp(5px, 0.7vw ,30px);
     color: var(--bg-secondary);
     text-align: center;
+}
+
+.emailSentText:last-child{
+    cursor: pointer;
 }

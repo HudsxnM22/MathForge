@@ -161,7 +161,9 @@ const confirmResetPasswordAPI = async ({ password }) => {
     try{
         response = await axios.post(API_URL + "reset-password/confirm", confirmRequest)
     }catch(error){
-        console.error('Register API error' + error);
+        return {
+            status: 400
+        }
     }
 
     return {

@@ -4,13 +4,39 @@ import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
 import authAPI from '../../api/auth.api';
 import { useForm } from 'react-hook-form';
+import { Ring } from 'ldrs/react'
+import 'ldrs/react/Ring.css'
 
 const ForgotPassword = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [verifyError, setVerifyError] = useState(false)
     const [emailSent, setEmailSent] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate()
+
+    const onSubmit = async (data) => {
+        if (!emailSent) {
+            setIsLoading(true)
+            setEmailSent(true)
+            try {
+                const response = await authAPI.resetPasswordAPI(data)
+            } catch (error) {
+                console.error(error)
+            }
+        } else {
+            try {
+                const response = await authAPI.validateResetPasswordAPI(data)
+                if (response.status === 202) {
+                    navigate('/reset-password')
+                } else {
+                    setVerifyError(true)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    }
 
     return (
         <div className={styles.loginContainer}>
@@ -47,7 +73,7 @@ const ForgotPassword = () => {
                                     message: 'code must be at most 6 numbers long'
                                 }
                             })}/>
-                            {errors.password && <p className={styles.errorText}>{errors.password.message}</p>}
+                            {errors.code && <p className={styles.errorText}>{errors.code.message}</p>}
                             {verifyError && <p className={styles.errorText}>
                                 Invalid Code 
                                 <p className={styles.emailSentText} onClick={() => {
