@@ -2,16 +2,33 @@ import React from 'react'
 import styles from './NotebookPage.module.css'
 import { useState, useEffect } from 'react'
 import Flashcard from './Flashcard'
+import { Bouncy } from 'ldrs/react'
+import 'ldrs/react/Bouncy.css'
 
 
 const NotebookPage = ({ notebook, setNotebookPage }) => {
+
+
+    if (notebook.loading || !notebook.notebookSet) {
+        return (
+          <div className={styles.flashcardContainer}>
+            <Bouncy
+                size="45"
+                speed="1.75"
+                color="white" 
+            />
+          </div>
+        );
+    }
+
     const [questions, setQuestions] = useState([
-        [notebook.notebookSet.q1Latex, notebook.notebookSet.q1Solution.queryresult],
-        [notebook.notebookSet.q2Latex, notebook.notebookSet.q2Solution.queryresult],
-        [notebook.notebookSet.q3Latex, notebook.notebookSet.q3Solution.queryresult],
-        [notebook.notebookSet.q4Latex, notebook.notebookSet.q4Solution.queryresult],
-        [notebook.notebookSet.q5Latex, notebook.notebookSet.q5Solution.queryresult],
+            [notebook.notebookSet.q1Instruction ,notebook.notebookSet.q1Latex, notebook.notebookSet.q1Solution.queryresult],
+            [notebook.notebookSet.q2Instruction ,notebook.notebookSet.q2Latex, notebook.notebookSet.q2Solution.queryresult],
+            [notebook.notebookSet.q3Instruction ,notebook.notebookSet.q3Latex, notebook.notebookSet.q3Solution.queryresult],
+            [notebook.notebookSet.q4Instruction ,notebook.notebookSet.q4Latex, notebook.notebookSet.q4Solution.queryresult],
+            [notebook.notebookSet.q5Instruction ,notebook.notebookSet.q5Latex, notebook.notebookSet.q5Solution.queryresult],
     ])
+
     const [index, setIndex] = useState(0)
 
     //pointer points to position within the array and displays the question on the flashcard component based on where the pointer is in the array

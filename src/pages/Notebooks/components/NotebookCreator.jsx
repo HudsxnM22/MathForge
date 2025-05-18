@@ -2,9 +2,10 @@ import React from "react";
 import styles from './NotebookCreator.module.css'
 import { useForm } from "react-hook-form"
 import { useState } from "react"
+import notebooksApi from "../../../api/notebooks.api";
 
 //notebook creator component on the right side of the notebook page.
-const NotebookCreator = () => {
+const NotebookCreator = ({ setNotebookPage }) => {
     const [topics, setTopics] = useState(topicsList)
     const [subTopics, setSubTopics] = useState([{ id: 0, display: "Select Topic..." }])
 
@@ -15,7 +16,7 @@ const NotebookCreator = () => {
         formState: { errors }
     } = useForm({
         defaultValues: {
-            notebookName: "",
+            name: "",
             topic: 0,
             subTopic: 0,
             difficulty: 1
@@ -25,7 +26,22 @@ const NotebookCreator = () => {
 
     //backend proccesses the id of the form values
     const onSubmit = (data) => {
-        console.log(data) //later to be sent to notebooks.api.js
+        const payload = {
+            name: data.name,
+            topic: parseInt(data.topic, 10),
+            subTopic: parseInt(data.subTopic, 10),
+            difficulty: data.difficulty
+        }
+        console.log(payload)
+        setNotebookPage({loading: true})
+        notebooksApi.createNotebookAPI(payload).then(response => {
+            if(response){
+                setNotebookPage(response)
+                notebooksApi.getAllNotebooksAPI() //updates the notebooks global state and appends the new notebook to the dashboard
+                setNotebookPage(response.data)
+            }
+            
+        })
     }
 
     // Populate the topic dropdown with topics from the topicsList
@@ -101,7 +117,7 @@ const NotebookCreator = () => {
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <fieldset className={styles.fieldSet}>
                     <label className={styles.label}>Name</label>
-                    <input type="text" {...register("notebookName", nameOptions)} className={styles.notebookNameInput} placeholder="Enter Name..."></input>
+                    <input type="text" {...register("name", nameOptions)} className={styles.notebookNameInput} placeholder="Enter Name..."></input>
                 </fieldset>
                 <fieldset className={styles.fieldSet}>
                     <label className={styles.label}>Select Topic</label>
@@ -122,8 +138,8 @@ const NotebookCreator = () => {
                     </input>
                     <p className={styles.difficultyText} style={{ color: colorMap[watch("difficulty")]}}>{difficultyMap[watch("difficulty")]}</p>
                 </fieldset>
-                <button type="submit" className={styles.createButton} style={{ backgroundColor: errors.notebookName ? "rgb(246, 106, 106)" : "var(--bg-secondary)"}}>
-                    {errors.notebookName ? errors.notebookName.message : "Create Notebook"}
+                <button type="submit" className={styles.createButton} style={{ backgroundColor: errors.name ? "rgb(246, 106, 106)" : "var(--bg-secondary)"}}>
+                    {errors.name ? errors.name.message : "Create Notebook"}
                 </button>
             </form>
 

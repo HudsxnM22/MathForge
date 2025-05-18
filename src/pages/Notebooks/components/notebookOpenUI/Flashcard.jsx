@@ -32,14 +32,13 @@ const Flashcard = ({ question }) => {
 
   //react sketch functions above here ^^^^^^^^^^^^^
 
-  //display could fetch reliable answer and then a disclaimer regarding AI capabilties
   useEffect(() => {
     if(question[1].success === false){
       return;
     }
 
     //these are called pods from wolfram alpha API send from backend
-    const questionAnswers = question[1].pods.flatMap((pod) => 
+    const questionAnswers = question[2].pods.flatMap((pod) => 
         pod.subpods.map((subpod) => {
           return {src: subpod.img.src}
         })
@@ -61,24 +60,26 @@ const Flashcard = ({ question }) => {
     }
   }, [question])
 
+  //this is the function that populates the answers, it will be called when the question is set
+  //it will map through the answers and create a div for each answer
+  //the src is in Base64 format...
   const populateAnswers = () => {
     return answers.map((answer, index) => 
       <div key={index} className='answerImageContainer'>
-        <img src={answer.src} className='answerImage'/>
+        <img src={`data:image/png;base64,${answer.src}`} className='answerImage'/>
       </div>
     )
   }
     
-  
 
-
-
+  //TODO fix this bs
   return (
     <StyledWrapper flipped={flipped}>
       <div className="card">
         <div className="card-inner">
           <div className="card-front">
-            <p>{"\\(" + question[0] + "\\)"}</p>
+            <p>{question[0]}</p> 
+            <p>{"\\(" + question[1] + "\\)"}</p>
             <ReactSketchCanvas
               width="100%"
               height="100%"

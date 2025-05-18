@@ -7,10 +7,12 @@ import ThemeSwitcher from './navbar-component/ThemeSwitcher'
 import UserDashboardButton from "./navbar-component/UserDashboardButton";
 import UserSideBar from "./navbar-component/UserSideBar";
 import authAPI from "../api/auth.api"
+import useUserNotebookStore from "../hooks/useUserNotebookStore";
 
 export default function NavBar() {
     const user = useUserStore(state => state.user)
     const [isMenuOpen, toggleMenuOpen] = useState(false)
+    const setNotebooksStore = useUserNotebookStore(state => state.setNotebooks)
 
     const navigate = useNavigate()
     
@@ -37,6 +39,7 @@ export default function NavBar() {
                                 console.log("Logout failed")
                             }
                         })
+                        setNotebooksStore([]) //clears memory of notebooks upon logout
                         navigate("/")
                     }}>Log-Out</h1>
                     <UserDashboardButton onClick={() => {

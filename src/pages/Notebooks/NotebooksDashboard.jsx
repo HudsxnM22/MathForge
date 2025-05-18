@@ -10,39 +10,45 @@ import NotebookCreator from './components/NotebookCreator';
 import getNotebookTests from '../../api/notebooks.api.js';
 import NotebookPage from './components/notebookOpenUI/NotebookPage.jsx'
 import notebooksApi from '../../api/notebooks.api.js';
+import useUserNotebookStore from '../../hooks/useUserNotebookStore.js';
 
 
 //for context for what a notebook is. its a collection of 5 math problems and its fetched from the backend and stored in the database
 //the user can create a notebook and add problems to it. the user can also delete a notebook and delete problems from it
 
 const NotebooksDashboard = () => {
-    const toggleUserLogIn = useUserStore(state => state.toggleLogIn);
-    const user = useUserStore(state => state.user);
+    const user = useUserStore(state => state.user)
+    const userNotebooks = useUserNotebookStore(state => state.notebooks)
     const [notebooks, setNotebooks] = useState([])
     const [displayedNotebooks, setDisplayedNotebooks] = useState([])
     const [notebookPage, setNotebookPage] = useState(null)
+    const [notebooksError, setNotebooksError] = useState(false)
     //will pull from local storage and API to fetch all notebooks and store them in an array state CURRENTLY IN TEST MODEL
 
     const notebooksPopulation = displayedNotebooks.map((notebook) => {
         return (
-            <NotebookCard key={notebook.id} NotebookData={notebook} setNotebookPage={setNotebookPage} />
+            <NotebookCard key={notebook.notebookId} NotebookData={notebook} setNotebookPage={setNotebookPage} />
         )
     })
 
 
     //ensure you put a try catch so if the backend is down it just sends a failsafe notification
-    
-    const testNotebook = async () => {
-        try {
-            const data = await notebooksApi.getAllNotebooksAPI()
-            setNotebooks([data])
-            setDisplayedNotebooks([data])
-            console.log(data)
-        } catch (error) {
-            console.error('Failed to fetch notebook data:', error)
-            //set a fallback state or notification here
-        }
-    };
+
+    const fetchNotebooksFromAPI = () => {
+        notebooksApi.getAllNotebooksAPI()
+            .then((response) => {
+                if (response.status === 200) {
+                    setNotebooks(response.data);
+                    setDisplayedNotebooks(response.data);
+                    setNotebooksError(false)
+                } else {
+                    setNotebooksError(true)
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching notebooks:', error);
+            });
+    }
 
     useEffect(() => {
         try {
@@ -68,6 +74,16 @@ const NotebooksDashboard = () => {
         };
     }, [notebookPage]);
 
+    useEffect(() => {
+        //the api layer sets the global state. if global state is filled pull from that not global state
+        if(userNotebooks.length > 0){
+            setNotebooks(userNotebooks)
+            setDisplayedNotebooks(userNotebooks)
+        }else{
+            fetchNotebooksFromAPI()
+        }
+    }, [])
+
 
     //if user isnt logged in nothing is displayed and theyre redirected to home
     return (
@@ -83,13 +99,12 @@ const NotebooksDashboard = () => {
                                 {displayedNotebooks.length > 0 ? 
                                     notebooksPopulation
                                 :
-                                    <h1 className={styles.emptyNotebookMessage}>No Notebooks found</h1>
+                                    <h1 className={styles.emptyNotebookMessage}>{notebooksError ? "Notebooks error" : "No Notebooks Found"}</h1>
                                 }
                             </section>
                         </div>
                     </div>
-                    <NotebookCreator />
-                    <button onClick={testNotebook}>Test</button>
+                    <NotebookCreator setNotebookPage={setNotebookPage}/>
                 </section>
             :
                 <Navigate to="/" />

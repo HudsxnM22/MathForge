@@ -41,6 +41,6 @@
 }
 
 .button path {
-    fill: rgb(35, 75, 255);
+    fill: var(--bg-secondary);
     
 }

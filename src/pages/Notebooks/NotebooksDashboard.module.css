@@ -54,5 +54,20 @@
     row-gap: 5.0vw;
     height: 100%;
     overflow-y: scroll;
+    scrollbar-width: auto;
+    scrollbar-color: var(--bg-main) var(--bg-main);
 }
 
+.notebooksList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.notebooksList::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+
+.notebooksList::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e;
+    border-radius: 20px;
+    border: 10px solid var(--bg-main);
+}

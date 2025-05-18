@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState } from 'react'
 import NotebookPage from './notebookOpenUI/NotebookPage';
 import { Navigate } from 'react-router-dom';
+import notebooksApi from '../../../api/notebooks.api.js';
 
 //this is the clickable card css is borrowed from a css designer far greater than myself
 //to do: edit feature, with POST request to change notebook name along with DELETE feature within each notebook loading feature for each card
@@ -15,7 +16,23 @@ const NotebookCard = ({NotebookData, setNotebookPage}) => {
     const NotebookName = NotebookData.notebookName
     const NotebookSubtopic = NotebookData.subTopic
     const NotebookDifficulty = NotebookData.difficulty
-    const NotebookSample = '\\(' + NotebookData.notebookSet.q1Latex + '\\)'
+    const NotebookSample = '\\(' + NotebookData.q1Sample + '\\)'
+
+    const fetchNotebookData = () => {
+        setNotebookPage({loading: true})
+        notebooksApi.getDataNotebookAPI({ id: NotebookData.notebookId })
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setNotebookPage(response.data)
+                } else {
+                    console.error('Error fetching notebook data:', response.status);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching notebook data:', error);
+            });
+    }
 
     const difficultyMap = {
         0: "Basic",
@@ -41,7 +58,7 @@ const NotebookCard = ({NotebookData, setNotebookPage}) => {
 
       return (
         <StyledWrapper>
-          <div className="card" onClick={() => setNotebookPage(NotebookData)}>
+          <div className="card" onClick={fetchNotebookData}>
             <div className="img" style={{background: `linear-gradient(180deg, ${colorMap[NotebookDifficulty]} 0%, white 100%`}}>
               <h4 className="math">{NotebookSample}</h4>
               <div className="save">✏️</div>
