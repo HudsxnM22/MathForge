@@ -1,6 +1,7 @@
 // this is currently the test model for this specific API port, will be developed and clean further in the future with integration of Springboot backend
 import axios from "axios";
 import useUserNotebookStore from "../hooks/useUserNotebookStore";
+import useUserNotebookAvailStore from "../hooks/userNotebookAvailStore";
 
 const API_URL = "/api/notebooks" //TODO change to https when deployed
 //all endpoints return 403 forbidden if JWT token is invalid/user isnt logged in
@@ -8,13 +9,23 @@ axios.defaults.withCredentials = true
 
 //returns array of all metadata notebook objects for displaying
 const getAllNotebooksAPI = async () => {
-    const setNotebooksState = useUserNotebookStore.getState().setNotebooks
     
     let response;
     try{
         response = await axios.get(API_URL);
         if(response.status == 200){
-            setNotebooksState(response.data)
+            //sorted array everytime for renaming and deleting purposes
+            response.data.sort((a, b) => {
+                if (a.notebookId < b.notebookId) {
+                    return -1;
+                }
+                if (a.notebookId > b.notebookId) {
+                    return 1;
+                }
+                return 0;
+            });
+            //set global state to the notebooks
+            useUserNotebookStore.getState().setNotebooks(response.data)
         }
     }catch(error){
         return {
@@ -53,11 +64,12 @@ const createNotebookAPI = async ({ name, topic, subTopic, difficulty }) => {
     try{
         response = await axios.post(API_URL, {
             name: name,
-            topic: topic + 1, //convert to 1 indexing for backend parsing
-            subTopic: subTopic + 1,
+            topic: topic, //convert to 1 indexing for backend parsing
+            subTopic: subTopic,
             difficulty: difficulty
         })
-        if(response.topic == null){ //notebook will be an empty notebook if the User runs out of tokens, will be changed at some point for now this works
+        console.log(response.data)
+        if(response.data.topic == null){ //notebook will be an empty notebook if the User runs out of tokens, will be changed at some point for now this works
             return null
         }
     }catch(error){
@@ -79,7 +91,9 @@ const deleteNotebookAPI = async ({ id }) => {
     try{
         response = await axios.delete(API_URL + "/" + id);
     }catch(error){
-        console.error('Delete notebook API error:: ' + error)
+        return {
+            status: 404 //not found
+        }
     }
 
     //returns 204 if notebook was deleted successfully
@@ -97,7 +111,9 @@ const updateNotebookAPI = async ({ id, name }) => {
             name: name
         });
     }catch(error){
-        console.error('Update notebook API error:: ' + error)
+        return {
+            status: 404 //not found
+        }
     }
 
     //returns 200 if notebook was updated successfully
@@ -111,7 +127,14 @@ const updateNotebookAPI = async ({ id, name }) => {
 const getNotebookAvailabilityAPI = async () => {
     let response;
     try{
-        response = await axios.get(API_URL + "count");
+        
+        response = await axios.get(API_URL + "/count");
+        const setNotebookAvailState = useUserNotebookAvailStore.getState().setNotebooksAvail
+        setNotebookAvailState({
+            globalNotebooksAvail: response.data.globalAvailableNotebooks,
+            userNotebooksAvail: response.data.userAvailableNotebooks
+        })
+        
     }catch(error){
         console.error('Get notebook availability API error:: ' + error)
     }

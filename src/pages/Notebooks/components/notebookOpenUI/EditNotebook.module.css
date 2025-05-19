@@ -1,0 +1,145 @@
+
+/* This specific css module is AI generated, just a small disclaimer, I used AI for time crunch things */
+.editNotebookCardContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8faff;
+    border-radius: clamp(12px, 3vw, 20px);
+    box-shadow: 0 8px 32px rgba(72, 134, 214, 0.2);
+    padding: clamp(20px, 4vw, 32px);
+    width: 90%;
+    max-width: clamp(320px, 60vw, 450px);
+    border: 1px solid rgba(72, 134, 214, 0.15);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .editNotebookCardClose {
+    position: absolute;
+    top: clamp(12px, 2vw, 16px);
+    right: clamp(12px, 2vw, 16px);
+    width: clamp(32px, 5vw, 40px);
+    height: clamp(32px, 5vw, 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    color: #4886d6;
+  }
+  
+  .editNotebookCardClose:hover {
+    background-color: rgba(72, 134, 214, 0.1);
+    transform: rotate(90deg);
+  }
+  
+  .editNotebookCardClose svg {
+    width: clamp(18px, 3vw, 24px);
+    height: clamp(18px, 3vw, 24px);
+  }
+  
+  .editNotebookCardTitle {
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 600;
+    color: #333;
+    margin-bottom: clamp(16px, 3vw, 24px);
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 24px);
+  }
+  
+  .form input[type="text"] {
+    padding: clamp(12px, 2.5vw, 16px);
+    border-radius: clamp(8px, 1.5vw, 12px);
+    border: 1px solid rgba(72, 134, 214, 0.3);
+    font-size: clamp(14px, 2.2vw, 16px);
+    background-color: white;
+    color: #333;
+    width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+  }
+  
+  .form input[type="text"]:focus {
+    outline: none;
+    border-color: #4886d6;
+    box-shadow: 0 0 0 3px rgba(72, 134, 214, 0.2);
+  }
+  
+  .form input[type="text"]::placeholder {
+    color: #aaa;
+  }
+  
+  .form button {
+    padding: clamp(10px, 2vw, 14px);
+    border-radius: clamp(8px, 1.5vw, 12px);
+    font-size: clamp(14px, 2.2vw, 16px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  
+  .form button[type="submit"] {
+    background-color: #4886d6;
+    color: white;
+    box-shadow: 0 2px 8px rgba(72, 134, 214, 0.2);
+  }
+  
+  .form button[type="submit"]:hover {
+    background-color: #3a6fb8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 134, 214, 0.3);
+  }
+  
+  .form button[type="submit"]:active {
+    background-color: #2e5a96;
+    transform: translateY(0);
+  }
+  
+  .deleteButton {
+    background-color: transparent;
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.5) !important;
+  }
+  
+  .deleteButton:hover {
+    background-color: rgba(231, 76, 60, 0.05);
+    color: #c0392b;
+    transform: translateY(-2px);
+  }
+  
+  .deleteButton:active {
+    background-color: rgba(231, 76, 60, 0.1);
+    transform: translateY(0);
+  }
+  
+  /* Optional overlay to dim background content */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(72, 134, 214, 0.05);
+    backdrop-filter: blur(2px);
+    z-index: 9998;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }

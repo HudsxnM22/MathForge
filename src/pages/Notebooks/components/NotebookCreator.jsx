@@ -5,7 +5,7 @@ import { useState } from "react"
 import notebooksApi from "../../../api/notebooks.api";
 
 //notebook creator component on the right side of the notebook page.
-const NotebookCreator = ({ setNotebookPage }) => {
+const NotebookCreator = ({ setNotebookPage, setAlert }) => {
     const [topics, setTopics] = useState(topicsList)
     const [subTopics, setSubTopics] = useState([{ id: 0, display: "Select Topic..." }])
 
@@ -13,7 +13,8 @@ const NotebookCreator = ({ setNotebookPage }) => {
         register,
         handleSubmit,
         watch,
-        formState: { errors }
+        formState: { errors },
+        setValue
     } = useForm({
         defaultValues: {
             name: "",
@@ -39,6 +40,9 @@ const NotebookCreator = ({ setNotebookPage }) => {
                 setNotebookPage(response)
                 notebooksApi.getAllNotebooksAPI() //updates the notebooks global state and appends the new notebook to the dashboard
                 setNotebookPage(response.data)
+            }else{
+                setNotebookPage(false)
+                setAlert("Either you or the community has run out of tokens. See disclaimer for details.")
             }
             
         })
@@ -66,22 +70,22 @@ const NotebookCreator = ({ setNotebookPage }) => {
     const subTopicPopulateBasedOnTopic = (e) => {
         const topicID = e.target.value
         const selectedSubTopics = topics.find(t => t.id == topicID).subtopics
-        console.log(topicID)
-        console.log(selectedSubTopics)
         
         if(topicID === 0){
             // If "Select Topic" is chosen, reset subtopics to nothings selected
             setSubTopics([{ id: 0, display: "Select Topic..." }]);
+            setValue("subTopic", 0)
         }else{
             setSubTopics(selectedSubTopics)
+            setValue("subTopic", selectedSubTopics[0].id)
         }
     }
 
     const nameOptions = {
         required: 'A name is required',
         maxLength: {
-            value: 50,
-            message: 'Name cannot exceed 50 characters'
+            value: 20,
+            message: 'Name cannot exceed 20 characters'
         },
         pattern: {
             value: /^[A-Za-z0-9 ]+$/,
@@ -162,7 +166,7 @@ const topicsList = [
       id: 1,
       display: "Arithmetic",
       subtopics: [
-        { id: 1, display: "Operations (Addition, Subtraction, Multiplication, Division)" },
+        { id: 1, display: "Operations" },
         { id: 2, display: "Fractions" },
         { id: 3, display: "Decimals" },
         { id: 4, display: "Percents" },

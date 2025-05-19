@@ -11,6 +11,8 @@ import getNotebookTests from '../../api/notebooks.api.js';
 import NotebookPage from './components/notebookOpenUI/NotebookPage.jsx'
 import notebooksApi from '../../api/notebooks.api.js';
 import useUserNotebookStore from '../../hooks/useUserNotebookStore.js';
+import Alert from '../Alert/Alert.jsx'
+import EditNotebookCard from './components/notebookOpenUI/EditNotebookCard.jsx';
 
 
 //for context for what a notebook is. its a collection of 5 math problems and its fetched from the backend and stored in the database
@@ -22,12 +24,14 @@ const NotebooksDashboard = () => {
     const [notebooks, setNotebooks] = useState([])
     const [displayedNotebooks, setDisplayedNotebooks] = useState([])
     const [notebookPage, setNotebookPage] = useState(null)
+    const [alert, setAlert] = useState(null)
+    const [notebookCard, setNotebookCard] = useState(null)
     const [notebooksError, setNotebooksError] = useState(false)
-    //will pull from local storage and API to fetch all notebooks and store them in an array state CURRENTLY IN TEST MODEL
+    
 
     const notebooksPopulation = displayedNotebooks.map((notebook) => {
         return (
-            <NotebookCard key={notebook.notebookId} NotebookData={notebook} setNotebookPage={setNotebookPage} />
+            <NotebookCard key={notebook.notebookId} NotebookData={notebook} setNotebookPage={setNotebookPage} setNotebookCard={setNotebookCard} />
         )
     })
 
@@ -82,7 +86,7 @@ const NotebooksDashboard = () => {
         }else{
             fetchNotebooksFromAPI()
         }
-    }, [])
+    }, [userNotebooks])
 
 
     //if user isnt logged in nothing is displayed and theyre redirected to home
@@ -104,13 +108,23 @@ const NotebooksDashboard = () => {
                             </section>
                         </div>
                     </div>
-                    <NotebookCreator setNotebookPage={setNotebookPage}/>
+                    <NotebookCreator setNotebookPage={setNotebookPage} setAlert={setAlert}/>
                 </section>
             :
                 <Navigate to="/" />
             }
             {notebookPage ? 
                 <NotebookPage notebook={notebookPage} setNotebookPage={setNotebookPage} />
+                :
+                <></>
+            }
+            {alert ? 
+                <Alert alert={alert} setAlert={setAlert}></Alert>
+            :
+                <></>
+            }
+            {notebookCard ? 
+                <EditNotebookCard notebook={notebookCard} setNotebookCard={setNotebookCard} />
                 :
                 <></>
             }

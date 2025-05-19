@@ -38,12 +38,16 @@ const Flashcard = ({ question }) => {
     }
 
     //these are called pods from wolfram alpha API send from backend
-    const questionAnswers = question[2].pods.flatMap((pod) => 
-        pod.subpods.map((subpod) => {
-          return {src: subpod.img.src}
-        })
-      )
-    setAnswers(questionAnswers);
+    if(question[2].success){
+      const questionAnswers = question[2].pods.flatMap((pod) => 
+          pod.subpods.map((subpod) => {
+            return {src: subpod.img.src}
+          })
+        )
+      setAnswers(questionAnswers);
+    }else{
+      setAnswers([])
+    }
   }, [question])
 
   useEffect(() => {
@@ -78,7 +82,7 @@ const Flashcard = ({ question }) => {
       <div className="card">
         <div className="card-inner">
           <div className="card-front">
-            <p>{question[0]}</p> 
+            
             <p>{"\\(" + question[1] + "\\)"}</p>
             <ReactSketchCanvas
               width="100%"
@@ -96,7 +100,15 @@ const Flashcard = ({ question }) => {
           </div>
           <div className="card-back">
             <div className='answersContainer'>
-              {populateAnswers()}
+            {answers.length > 0
+              ? populateAnswers()
+              : (
+                <div>
+                  <h6 className="errorMessage">Oops — we couldn’t figure this one out.</h6>
+                  <p className="errorDescription">The AI gave it a shot, but this problem stumped it. We’re always learning and improving, so try again soon!</p>
+                </div>
+              )
+            }
               <button className='flipButton' onClick={() => setFlipped(!flipped)}><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#004aad"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.096"></g><g id="SVGRepo_iconCarrier"> <path d="M4.06189 13C4.02104 12.6724 4 12.3387 4 12C4 7.58172 7.58172 4 12 4C14.5006 4 16.7332 5.14727 18.2002 6.94416M19.9381 11C19.979 11.3276 20 11.6613 20 12C20 16.4183 16.4183 20 12 20C9.61061 20 7.46589 18.9525 6 17.2916M9 17H6V17.2916M18.2002 4V6.94416M18.2002 6.94416V6.99993L15.2002 7M6 20V17.2916" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Show Question</button>
             </div>
           </div>
@@ -297,6 +309,19 @@ const StyledWrapper = styled.div`
 
   .undoButton:active {
     background-color: rgb(247, 245, 134);
+  }
+
+  .errorMessage {
+    margin-top: 25%;
+    color: var(--bg-secondary);
+    font-size: clamp(5px, 1.0vw, 50px);
+    text-align: center;
+  }
+  .errorDescription {
+    margin-top: 2%;
+    color: black;
+    font-size: clamp(5px, 0.7vw, 50px);
+    text-align: center;
   }
 `;
 

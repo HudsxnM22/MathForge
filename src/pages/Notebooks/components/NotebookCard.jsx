@@ -11,7 +11,7 @@ import notebooksApi from '../../../api/notebooks.api.js';
 //this is the card that will be displayed for each notebook
 //the user can click on the card to view the notebook
 //**this is from https://uiverse.io/JohnnyCSilva/jolly-elephant-67
-const NotebookCard = ({NotebookData, setNotebookPage}) => {
+const NotebookCard = ({NotebookData, setNotebookPage, setNotebookCard}) => {
 
     const NotebookName = NotebookData.notebookName
     const NotebookSubtopic = NotebookData.subTopic
@@ -61,7 +61,10 @@ const NotebookCard = ({NotebookData, setNotebookPage}) => {
           <div className="card" onClick={fetchNotebookData}>
             <div className="img" style={{background: `linear-gradient(180deg, ${colorMap[NotebookDifficulty]} 0%, white 100%`}}>
               <h4 className="math">{NotebookSample}</h4>
-              <div className="save">✏️</div>
+              <div className="save" onClick={(e) => {
+                e.stopPropagation()
+                setNotebookCard(NotebookData)
+              }}>✏️</div>
             </div>
             <div className="text">
               <p className="h3"> {NotebookName} </p>

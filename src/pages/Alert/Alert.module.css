@@ -1,0 +1,99 @@
+
+/* This specific css module is AI generated, just a small disclaimer */
+.alertContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff8f8;
+    border-radius: clamp(12px, 3vw, 20px);
+    box-shadow: 0 8px 32px rgba(231, 76, 60, 0.2);
+    width: 90%;
+    max-width: clamp(320px, 60vw, 450px);
+    padding: clamp(20px, 4vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 24px);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+    border: 1px solid rgba(231, 76, 60, 0.15);
+  }
+  
+  .alertTitle {
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 600;
+    color: #333333;
+  }
+  
+  .alertMessage {
+    font-size: clamp(14px, 2.2vw, 16px);
+    line-height: 1.5;
+    color: #555555;
+  }
+  
+  .alertButton {
+    align-self: flex-end;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: clamp(8px, 2vw, 12px);
+    padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+    font-size: clamp(14px, 2.2vw, 16px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+  }
+  
+  .alertButton:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+  }
+  
+  .alertButton:active {
+    background-color: #a93226;
+    transform: translateY(0);
+  }
+  
+  /* Optional overlay to dim background content */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(231, 76, 60, 0.05);
+    backdrop-filter: blur(2px);
+    z-index: 9998;
+  }
+  
+  .alertButton:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .alertButton:active {
+    background-color: #2c5d99;
+  }
+  
+  /* Optional overlay to dim background content */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }

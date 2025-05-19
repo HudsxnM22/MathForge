@@ -1,6 +1,7 @@
 import axios from "axios"
 import useUserStore from "../hooks/useUserStore"
 import useUserNotebookAvailStore from "../hooks/userNotebookAvailStore"
+import useUserNotebookStore from "../hooks/useUserNotebookStore"
 
 const API_URL = "/api/" //TODO change to https when deployed
 axios.defaults.withCredentials = true
@@ -23,6 +24,7 @@ const loginAPI = async ({email, password}) => {
             setLogInState({
                 email: response.data.email
             })
+            useUserNotebookStore.getState().setNotebooks([]); //clears already stored notebooks of previous session
         }
     }catch(error){
         return {
@@ -67,24 +69,33 @@ const registerAPI = async ({email, password}) => {
 }
 
 //if status 403 redirect to login page if JWT is expired
+//also returns a user response same as login and register, so this is used upon paghe refresh to login via JWT aswell
 const refreshAPI = async () => {
+    const setLogInState = useUserStore.getState().setLogIn
 
     let response;
     try{
         response = await axios.get(API_URL + "refresh")
+        if(response.status == 202){
+            setLogInState({
+                email: response.data.email
+            })
+        }
 
     }catch(error){
-        console.error('Register API error' + error);
+        return {
+            status: 403
+        }
     }
 
     return {
-        data: response.data,
         status: response.status
     }
 }
 
 const logoutAPI = async () => {
     const setLogOutState = useUserStore.getState().setLogOut
+   
 
     let response;
     try{
