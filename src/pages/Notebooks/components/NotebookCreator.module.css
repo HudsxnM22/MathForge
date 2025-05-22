@@ -126,4 +126,35 @@
     transform: scale(0.98);
 }
 
+@media (max-width: 1024px) {
+    .notebookCreatorContainer {
+        width: 90vw;
+        height: fit-content;
+        margin-left: 0;
+        margin-top: 5vw;
+    }
 
+    .creatorTitle {
+        font-size: clamp(5px, 2vw ,25px);
+    }
+
+    .instructions {
+        font-size: clamp(5px, 1.2vw ,18px);
+    }
+
+    .label{
+        font-size: clamp(5px, 2vw ,30px);
+    }
+
+    .notebookNameInput {
+        font-size: clamp(5px, 2vw ,30px);
+    }
+
+    .notebookDropdown {
+        font-size: clamp(5px, 2vw ,30px);
+    }
+
+    .difficultyText {
+        font-size: clamp(5px, 2vw ,20px);
+    }
+}

@@ -71,3 +71,32 @@
     border-radius: 20px;
     border: 10px solid var(--bg-main);
 }
+
+@media (max-width: 1024px) {
+    .notebooksList {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .notebookHolderContainer {
+        width: 100%;
+        height: 50vw;
+    }
+
+    .notebookTitle {
+        font-size: clamp(0.5rem, 2vw, 5rem);
+    }
+
+    .emptyNotebookMessage {
+        font-size: clamp(0.5rem, 2vw, 5rem);
+    }
+
+    .notebookDashboardContainer {
+        height: 100vh;
+    }
+
+    .notebooksDashboard {
+        padding-top: 0;
+        height: 100vh;
+        flex-direction: column;
+    }
+}

@@ -221,6 +221,118 @@ const StyledWrapper = styled.div`
     .theme__toggle:focus-visible {
       box-shadow: 0 0 0 0.125em var(--primary);
     }
-  }`;
+  }
+  
+  @media (max-width: 1023px) {
+    .theme__toggle {
+      width: 4em;
+      height: 2em;
+      padding: 0.15em;
+    }
+
+    .theme__toggle:before {
+      width: 1.7em;
+      height: 1.7em;
+    }
+
+    .theme__icon {
+      top: 0.35em;
+      left: 0.35em;
+      width: 1em;
+      height: 1em;
+    }
+
+    .theme__icon-part {
+      width: 0.7em;
+      height: 0.7em;
+      top: calc(50% - 0.35em);
+      left: calc(50% - 0.35em);
+      box-shadow: 0.28em -0.28em 0 0.35em hsl(0,0%,100%) inset;
+    }
+
+    .theme__icon-part ~ .theme__icon-part {
+      width: 0.07em;
+      height: 0.14em;
+      left: calc(50% - 0.035em);
+      transform: rotate(0deg) translateY(0.35em);
+    }
+
+    .theme__icon-part:nth-child(3) {
+      transform: rotate(45deg) translateY(0.32em);
+    }
+
+    .theme__icon-part:nth-child(4) {
+      transform: rotate(90deg) translateY(0.32em);
+    }
+
+    .theme__icon-part:nth-child(5) {
+      transform: rotate(135deg) translateY(0.32em);
+    }
+
+    .theme__icon-part:nth-child(6) {
+      transform: rotate(180deg) translateY(0.32em);
+    }
+
+    .theme__icon-part:nth-child(7) {
+      transform: rotate(225deg) translateY(0.32em);
+    }
+
+    .theme__icon-part:nth-child(8) {
+      transform: rotate(270deg) translateY(0.35em);
+    }
+
+    .theme__icon-part:nth-child(9) {
+      transform: rotate(315deg) translateY(0.35em);
+    }
+
+    .theme__toggle:checked:before,
+    .theme__toggle:checked ~ .theme__icon {
+      transform: translateX(2em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(1) {
+      box-shadow: 0.14em -0.14em 0 0.14em hsl(0,0%,100%) inset;
+      top: 0.14em;
+      left: -0.14em;
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(2) {
+      transform: rotate(45deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(3) {
+      transform: rotate(90deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(4) {
+      transform: rotate(135deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(5) {
+      transform: rotate(180deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(6) {
+      transform: rotate(225deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(7) {
+      transform: rotate(270deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(8) {
+      transform: rotate(315deg) translateY(0.56em);
+    }
+
+    .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(9) {
+      transform: rotate(360deg) translateY(0.56em);
+    }
+
+    .theme__toggle-wrap {
+      margin: 0 0.5em;
+    }
+  }
+  `
+  
 
 export default ThemeSwitcher;
