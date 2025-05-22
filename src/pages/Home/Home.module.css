@@ -116,3 +116,64 @@
     text-align: left;
     padding: 3em;
 }
+
+@media (max-width: 1024px) {
+    .mainContent {
+        max-width: 100%;
+        margin: 0 auto;
+        gap: 0;
+    }
+
+    .HomeContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .homeBannerImageHolder {
+        max-width: 100%;
+        aspect-ratio: 16 / 11.5;
+        border-radius: 0;
+    }
+
+    .textHolder {
+        width: 100%;
+    }
+
+    .createButton {
+        width: 80%;
+        padding: 1.4em 0;
+    }
+
+    .HowContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .notebookHowToImage {
+        max-width: 90%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .howtoTextHolder {
+        width: 100%;
+        padding: 6% 2% 8% 2%;
+        gap: 4vw;
+    }
+
+    .howToText {
+        font-size: clamp(0.5rem, 5vw, 4.5rem);
+    }
+    .description {
+        font-size: clamp(0.3rem, 2vw, 2rem);
+    }
+    .disclaimer {
+        margin-top: -2.7em;
+        font-size: clamp(0.2rem, 1.5vw, 2rem);
+        padding: 3em 2em;
+    }
+}

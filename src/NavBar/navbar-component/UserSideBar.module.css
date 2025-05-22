@@ -63,3 +63,19 @@
         transform: translateY(0);
     }
 }
+
+@media (max-width: 1024px) {
+    .dashBoardButton {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .menuHolder {
+        top: 8vh;
+        right: 0;
+    }
+
+    .userSideTile {
+        font-size: clamp(5px,3.5vw ,60px);
+    }
+}
