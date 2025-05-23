@@ -28,3 +28,23 @@
     color: var(--text-main);
     z-index: 10;
 }
+
+@media (max-width: 1024px) {
+    .box {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+ 
+    .input {
+        padding: 1em 1.5em;
+        font-size: clamp(16px, 4vw, 24px);
+        border-radius: 0px 0px clamp(8px, 2vw, 25px) clamp(8px, 2vw, 25px);
+    }
+ 
+    .searchIcon {
+        height: clamp(20px, 5vw, 30px);
+        width: clamp(20px, 5vw, 30px);
+        margin-left: 90%;
+    }
+}

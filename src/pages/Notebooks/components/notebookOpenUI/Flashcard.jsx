@@ -109,7 +109,7 @@ const Flashcard = ({ question }) => {
                 </div>
               )
             }
-              <button className='flipButton' onClick={() => setFlipped(!flipped)}><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#004aad"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.096"></g><g id="SVGRepo_iconCarrier"> <path d="M4.06189 13C4.02104 12.6724 4 12.3387 4 12C4 7.58172 7.58172 4 12 4C14.5006 4 16.7332 5.14727 18.2002 6.94416M19.9381 11C19.979 11.3276 20 11.6613 20 12C20 16.4183 16.4183 20 12 20C9.61061 20 7.46589 18.9525 6 17.2916M9 17H6V17.2916M18.2002 4V6.94416M18.2002 6.94416V6.99993L15.2002 7M6 20V17.2916" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Show Question</button>
+              <button className='flipButton' onClick={() => setFlipped(!flipped)}><svg className="flip-icon" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#004aad"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.096"></g><g id="SVGRepo_iconCarrier"> <path d="M4.06189 13C4.02104 12.6724 4 12.3387 4 12C4 7.58172 7.58172 4 12 4C14.5006 4 16.7332 5.14727 18.2002 6.94416M19.9381 11C19.979 11.3276 20 11.6613 20 12C20 16.4183 16.4183 20 12 20C9.61061 20 7.46589 18.9525 6 17.2916M9 17H6V17.2916M18.2002 4V6.94416M18.2002 6.94416V6.99993L15.2002 7M6 20V17.2916" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Show Question</button>
             </div>
           </div>
         </div>
@@ -322,6 +322,83 @@ const StyledWrapper = styled.div`
     color: black;
     font-size: clamp(5px, 0.7vw, 50px);
     text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    & {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(0,0,0,0.5) !important;
+      z-index: 1000 !important;
+    }
+
+    .card {
+      position: relative !important;
+      width: 90vw !important;
+      height: 90vh !important;
+      max-width: 600px !important;
+      max-height: 800px !important;
+      border-radius: clamp(10px, 2vw, 20px) !important;
+    }
+
+    .card-front {
+      font-size: clamp(5px, 3.5vw, 50px) !important;
+    }
+
+    .closeButton {
+      position: absolute !important;
+      top: 2vw !important;
+      right: 2vw !important;
+      font-size: 4vw !important;
+      cursor: pointer !important;
+      z-index: 1001 !important;
+    }
+
+    .arrowLeft,
+    .arrowRight {
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      font-size: 4vw !important;
+      cursor: pointer !important;
+      z-index: 1001 !important;
+    }
+    .arrowLeft  { left: 2vw !important; }
+    .arrowRight { right: 2vw !important; }
+
+    .flipButton {
+      /* Even bigger on mobile */
+      font-size: 5vw !important;
+      padding: 2vw 3vw !important;
+      bottom: 2vw !important;
+      right: 2vw !important;
+      border-radius: clamp(8px, 2vw, 30px) !important;
+    }
+
+    .penButton,
+    .eraserButton,
+    .undoButton,
+    .colorPicker {
+      width: 8vw !important;
+      height: 8vw !important;
+      bottom: 3vw !important;
+    }
+
+    .penButton   { left: 2vw !important; }
+    .eraserButton{ left: 12vw !important; }
+    .undoButton  { left: 22vw !important; }
+    .colorPicker { left: 32vw !important; }
+
+    .flipButton svg {
+      width: 5vw !important;
+      height: 5vw !important;
+    }
   }
 `;
 

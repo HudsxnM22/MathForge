@@ -145,6 +145,7 @@
     .createButton {
         width: 80%;
         padding: 1.4em 0;
+        font-size: 15px;
     }
 
     .HowContent {

@@ -30,15 +30,7 @@ const useUserStore = create((set) => ({
                 isLoggedIn: false
             }
         }))
-    },
-
-    //TODO test set functions for front end logic, to be removed.
-    toggleLogIn: () => set((state) => ({
-        user: {
-            ...state.user,
-            isLoggedIn: !state.user.isLoggedIn
-        }
-    })),
+    }
 }))
 
 export default useUserStore

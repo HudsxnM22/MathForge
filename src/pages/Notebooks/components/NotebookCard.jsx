@@ -177,7 +177,49 @@ const NotebookCard = ({NotebookData, setNotebookPage, setNotebookCard}) => {
         transform: scale(1.1) rotate(10deg);
       }
 
-      }`;
+      }
+      @media (max-width: 1024px) {
+        .card {
+          width: 280px !important;
+          height: 280px !important;
+          flex-shrink: 0;
+          scroll-snap-align: center;
+          border-radius: 15px !important;
+          -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.3) !important;
+          -moz-box-shadow:    0px 1px 5px 0px rgba(0, 0, 0, 0.3) !important;
+          box-shadow:         0px 1px 5px 0px rgba(0, 0, 0, 0.3) !important;
+          padding-bottom: 10px !important;
+        }
+  
+        .math {
+            font-size: clamp(12px, 3vw, 24px) !important;
+        }
+
+        .img {
+          border-top-left-radius: 15px !important;
+          border-top-right-radius: 15px !important;
+        }
+    
+        .save {
+            width: 30px !important;
+            height: 30px !important;
+            font-size: clamp(16px, 4vw, 20px) !important;
+            border-radius: 10px !important;
+        }
+    
+        .text .h3 {
+            font-size: clamp(14px, 3.5vw, 22px) !important;
+        }
+    
+        .text .p {
+            font-size: clamp(12px, 3vw, 18px) !important;
+        }
+    
+        .icon-box .span {
+            font-size: clamp(12px, 3vw, 18px) !important;
+        }
+      }
+      `;
     
     export default NotebookCard;
     

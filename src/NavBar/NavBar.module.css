@@ -89,6 +89,7 @@
     flex-direction: column;
     width: 7.3%;
     gap: 2em;
+    z-index: 100;
 }
 
 .SideButton {
@@ -191,5 +192,9 @@
 
     .sidebuttontext:first-child {
         text-align: center;
+    }
+
+    .SideNav {
+        gap: 1.3em;
     }
   }

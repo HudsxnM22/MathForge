@@ -74,29 +74,35 @@
 
 @media (max-width: 1024px) {
     .notebooksList {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        scroll-snap-type: x mandatory;
     }
-    
+
     .notebookHolderContainer {
-        width: 100%;
-        height: 50vw;
-    }
-
-    .notebookTitle {
-        font-size: clamp(0.5rem, 2vw, 5rem);
-    }
-
-    .emptyNotebookMessage {
-        font-size: clamp(0.5rem, 2vw, 5rem);
-    }
-
-    .notebookDashboardContainer {
-        height: 100vh;
+        width: 90%;
+        height: fit-content;
+        margin-left: 0;
+        z-index: 5;
     }
 
     .notebooksDashboard {
-        padding-top: 0;
-        height: 100vh;
         flex-direction: column;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        padding-bottom: 5vh;
     }
+
+    .notebookTitle {
+        margin-top: 5%;
+        padding-left: 0;
+        text-align: center;
+        font-size: clamp(0.5rem, 5.5vw, 10rem);
+    }
+
 }
