@@ -41,7 +41,7 @@ const StyledWrapper = styled.div`
 
   .theme__icon,
   .theme__toggle {
-    z-index: 1;
+    z-index: 10000;
   }
 
   .theme__icon,
