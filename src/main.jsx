@@ -10,6 +10,7 @@ import Register from './pages/Auth/Register.jsx';
 import ForgotPassword from './pages/Auth/ForgotPassword.jsx';
 import NewPassword from './pages/Auth/NewPassword.jsx';
 import Footer from './Footer/Footer.jsx';
+import Policies from './pages/Policies/Policies.jsx';
 import { MathJaxContext } from 'better-react-mathjax';
 
 createRoot(document.getElementById('root')).render(
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<NewPassword />} />
+          <Route path="/policies" element={<Policies />} />
         </Routes>
       <Footer />
     </BrowserRouter>

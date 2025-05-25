@@ -1,0 +1,174 @@
+
+.policiesContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  .policiesTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .policiesContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .policiesContent > div {
+    background: var(--bg-main);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+  }
+  
+  .policiesContent > div h2 {
+    background: linear-gradient(135deg, #667eea 0%, var(--bg-secondary) 100%);
+    color: white;
+    margin: 0;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  
+  .policiesContent > div p {
+    padding: 1.5rem;
+    margin: 0;
+    line-height: 1.6;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 0.95rem;
+  }
+  
+  /* Custom scrollbar styling */
+  .policiesContent > div p::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .policiesContent > div p::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .policiesContent > div p::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  .policiesContent > div p::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+  
+  /* Firefox scrollbar styling */
+  .policiesContent > div p {
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+  }
+  
+  /* Desktop styles */
+  @media (min-width: 768px) {
+    .policiesContainer {
+      padding: 3rem;
+    }
+    
+    .policiesTitle {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .policiesContent {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .policiesContent > div {
+      height: 600px;
+    }
+    
+    .policiesContent > div h2 {
+      font-size: 1.75rem;
+      padding: 2rem;
+    }
+    
+    .policiesContent > div p {
+      padding: 2rem;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Large desktop styles */
+  @media (min-width: 1024px) {
+    .policiesContent {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .policiesContent > div {
+      height: 650px;
+    }
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 1024px) {
+    .policiesContainer {
+      padding: 1rem;
+    }
+    
+    .policiesTitle {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .policiesContent {
+      gap: 1.5rem;
+    }
+    
+    .policiesContent > div {
+      height: 400px;
+    }
+    
+    .policiesContent > div h2 {
+      padding: 1rem;
+      font-size: 1.25rem;
+    }
+    
+    .policiesContent > div p {
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+  
+  /* Extra small mobile screens */
+  @media (max-width: 480px) {
+    .policiesContainer {
+      padding: 0.75rem;
+    }
+    
+    .policiesTitle {
+      font-size: 1.75rem;
+    }
+    
+    .policiesContent > div {
+      height: 350px;
+    }
+    
+    .policiesContent > div h2 {
+      padding: 0.75rem;
+      font-size: 1.1rem;
+    }
+    
+    .policiesContent > div p {
+      padding: 0.75rem;
+      font-size: 0.85rem;
+    }
+  }
