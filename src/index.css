@@ -9,7 +9,7 @@
     --footer-bg: linear-gradient(135deg, #f5f7fa 0%, #e8ecf0 100%);
     --footer-text: #2c3e50;
 
-    --logo-theme: url('./assets/lightLogo.png');
+    --logo-theme: url('/lightLogo.png');
 
     font-family: "Poppins", sans-serif;
     color: var(--text-main);
