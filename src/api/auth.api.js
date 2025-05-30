@@ -3,7 +3,7 @@ import useUserStore from "../hooks/useUserStore"
 import useUserNotebookAvailStore from "../hooks/userNotebookAvailStore"
 import useUserNotebookStore from "../hooks/useUserNotebookStore"
 
-const API_URL = "/api/" //TODO change to https when deployed
+const API_URL = "https://api.mathforge.xyz/api/" //TODO change to https when deployed
 axios.defaults.withCredentials = true
 
 //returns object with data and status for auth handling, also handles global state updates

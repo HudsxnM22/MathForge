@@ -3,7 +3,7 @@ import axios from "axios";
 import useUserNotebookStore from "../hooks/useUserNotebookStore";
 import useUserNotebookAvailStore from "../hooks/userNotebookAvailStore";
 
-const API_URL = "/api/notebooks" //TODO change to https when deployed
+const API_URL = "https://api.mathforge.xyz/api/notebooks" //TODO change to https when deployed
 //all endpoints return 403 forbidden if JWT token is invalid/user isnt logged in
 axios.defaults.withCredentials = true
 
