@@ -56,7 +56,7 @@ export default function NavBar() {
             (response) => {
                 if(response.status === 202){
                     console.log("Reloggedin successful")
-                    navigate("/notebooks")
+                    navigate("/")
                 }
             }
         ).catch((error) => {
