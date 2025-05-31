@@ -23,6 +23,12 @@ body {
     height: 100vh;
 }
 
+/* the page’s background can’t scroll, this is for drawing on mobile */
+body.no-scroll {
+    overflow: hidden;
+    width: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
