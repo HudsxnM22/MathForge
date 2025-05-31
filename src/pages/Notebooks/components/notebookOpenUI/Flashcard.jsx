@@ -64,6 +64,12 @@ const Flashcard = ({ question }) => {
     }
   }, [question])
 
+  // Prevent any scroll from canvas reaching the parent overlay
+  const preventTouchScroll = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   //this is the function that populates the answers, it will be called when the question is set
   //it will map through the answers and create a div for each answer
   //the src is in Base64 format...
@@ -75,13 +81,11 @@ const Flashcard = ({ question }) => {
     )
   }
     
-
-  //TODO fix this bs
   return (
     <StyledWrapper flipped={flipped}>
       <div className="card">
         <div className="card-inner">
-          <div className="card-front">
+          <div className="card-front" onTouchStart={preventTouchScroll} onTouchMove={preventTouchScroll} onTouchEnd={preventTouchScroll}>
             
             <p>{"\\(" + question[1] + "\\)"}</p>
             <ReactSketchCanvas
