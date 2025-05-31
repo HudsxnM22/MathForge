@@ -85,7 +85,7 @@ const Flashcard = ({ question }) => {
     <StyledWrapper flipped={flipped}>
       <div className="card">
         <div className="card-inner">
-          <div className="card-front" onTouchStart={preventTouchScroll} onTouchMove={preventTouchScroll} onTouchEnd={preventTouchScroll}>
+          <div className="card-front">
             
             <p>{"\\(" + question[1] + "\\)"}</p>
             <ReactSketchCanvas
