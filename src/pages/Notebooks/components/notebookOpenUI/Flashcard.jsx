@@ -180,6 +180,8 @@ const StyledWrapper = styled.div`
     width: 100%;
     overflow-y: auto;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
     height: 95%;
     padding: 10px;
   }
