@@ -49,6 +49,7 @@
 @media (max-width: 1024px) {
     .flashcardContainer {
         margin-top: -18vw;
+        overscroll-behavior: contain;
     }
 
     .exitButton {
@@ -74,4 +75,6 @@
         top: 8%;
         left: 3%;
     }
+
+    
 }

@@ -345,6 +345,7 @@ const StyledWrapper = styled.div`
       max-width: 600px !important;
       max-height: 800px !important;
       border-radius: clamp(10px, 2vw, 20px) !important;
+      overscroll-behavior: contain !important;
     }
 
     .card-front {

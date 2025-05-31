@@ -46,13 +46,6 @@ const NotebookPage = ({ notebook, setNotebookPage }) => {
     }
     //displays card at given index
 
-    useEffect(() => {
-        document.body.classList.add('no-scroll');
-        return () => {
-          document.body.classList.remove('no-scroll');
-        };
-      }, []);
-
     //array of arrays that hold question at pos[0] and answer at pos[1], passes data to notebook displaying the data based on given pointer, images will be later changed to Base64 and stored in memory
     return (
         <div className={styles.flashcardContainer}>
