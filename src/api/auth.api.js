@@ -55,6 +55,7 @@ const registerAPI = async ({email, password}) => {
             setLogInState({
                 email: response.data.email
             })
+            useUserNotebookStore.getState().setNotebooks([]); //clears already stored notebooks of previous session
         }
     }catch(error){
         return {
