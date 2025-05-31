@@ -181,7 +181,7 @@ const NotebookCard = ({NotebookData, setNotebookPage, setNotebookCard}) => {
       @media (max-width: 1024px) {
         .card {
           width: 280px !important;
-          height: 280px !important;
+          height: 210px !important;
           flex-shrink: 0;
           scroll-snap-align: center;
           border-radius: 15px !important;
