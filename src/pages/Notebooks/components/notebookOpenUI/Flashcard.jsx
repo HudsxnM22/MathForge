@@ -341,7 +341,7 @@ const StyledWrapper = styled.div`
     .card {
       position: relative !important;
       width: 90vw !important;
-      height: 90vh !important;
+      height: 70vh !important;
       max-width: 600px !important;
       max-height: 800px !important;
       border-radius: clamp(10px, 2vw, 20px) !important;
