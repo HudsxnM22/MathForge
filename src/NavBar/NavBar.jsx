@@ -52,17 +52,14 @@ export default function NavBar() {
 
     //refreshes the JWT token on page load, if the user is logged in. and relogs in user upon page reload...
     useEffect(() => {
-        navigate("/")
         authAPI.refreshAPI().then(
             (response) => {
                 if(response.status === 202){
-                    console.log("Reloggedin successful")
-                    navigate("/")
+                    console.log("Reloggedin successful") 
                 }
             }
         ).catch((error) => {
             console.error('Error logging in via JWT:', error);
-            navigate("/")
         }
         )
     }, [])
