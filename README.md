@@ -70,18 +70,6 @@ MathForge is a full-stack web application that generates and delivers custom mat
    - JWTs issued by jjwt and stored in secure HTTP-Only cookies  
    - Stateless session management
 
-5. **Notebook CRUD**  
-   - `Notebook` entity holds:  
-     - `id`, `userId`, `metadata`  
-     - `problems` (array of MathForge-generated problems)  
-     - `solutions` (array of Wolfram Alpha step outputs)  
-   - Standard REST endpoints:  
-     - `POST /api/notebooks` – create a new notebook  
-     - `GET /api/notebooks` – list all notebooks for the authenticated user  
-     - `GET /api/notebooks/{id}` – retrieve a single notebook  
-     - `PATCH /api/notebooks/{id}` – modify notebook details (e.g., title)  
-     - `DELETE /api/notebooks/{id}` – remove a notebook  
-
 ---
 
 ## Usage
